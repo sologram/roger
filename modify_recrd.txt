@@ -1,0 +1,12 @@
+.LOG
+
+
+Roger'note for mainboard program.
+
+1/20170304,figure out usart_dma hal-lib bug, reinitialize uart when received data is wrong.
+
+2/20170419,power control with protetion and surge
+
+3/20170426,figure out that pwm output stop for 1.2ms while adjust pwm.
+
+18:59 2017/4/26
