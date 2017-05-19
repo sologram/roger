@@ -126,7 +126,7 @@ void heat_start(void)
 {	
 		if (counter_addpower_delay>0)//waitting for voltage drop 
        counter_addpower_delay--;
-	if (rsp.power<(cmd.lmt_power-200))
+	if (rsp.power<cmd.lmt_power)
 			    {
 						pwm_pulse_set(pwm_pulse++);
 						if (pwm_pulse>600)
@@ -148,25 +148,26 @@ void heat_adjust(void)
 {
 	static uint8_t counter_add=0;
 	
-	if (counter_add>2)
+	if (counter_add>3)
 		 counter_add=0;
 	else
 		 counter_add++;
-	if ((rsp.power<target_power)&&(counter_add==0)&&(flag_throttle==0))
+	if ((rsp.power<target_power)&&(counter_add==0)&&(flag_throttle==0)&&(rsp.current<(cmd.lmt_current-40)))
 			    {
-						if ((target_power-rsp.power)>350)
+						if ((target_power-rsp.power)>100)
 							pwm_pulse_set(pwm_pulse++);
 								
 			    }
 	if	(rsp.power>target_power)	 
 			{ 	
-				 if ((rsp.power-target_power>250))
+				 if ((rsp.power-target_power>400))
              {
-							 pwm_pulse=pwm_pulse-3;
+							 pwm_pulse=pwm_pulse-5;
 							 pwm_pulse_set(pwm_pulse);
 						 }				 
 					
 			}
+ 
 	if (flag_throttle==1)
 		 flag_throttle=0;
 
@@ -197,27 +198,25 @@ void heat_stop_with_on_delay(void)//for case of protection
 void heat_protect(void)
 {
 	
-	uint32_t temp;//high and low voltage protect
-	temp=cmd.lmt_voltage*75/100;
+
   if (heatstep==4)
 	{
-			if ((rsp.voltage<temp)||(rsp.voltage>cmd.lmt_voltage))	
+			if ((rsp.voltage<1800)||(rsp.voltage>cmd.lmt_voltage))	
 			{
 					heat_stop_with_on_delay();
 					ErrorReport(ERROR_VOLTAGE);
 			}
   }
 	
-	if (rsp.current>cmd.lmt_current)//max current limitation
+	if (rsp.current>(cmd.lmt_current-20))//max current limitation
 	{ 
-		pwm_pulse=pwm_pulse-3;
-		pwm_pulse_set(pwm_pulse);
+		pwm_pulse_set(pwm_pulse--);
 	}
 
 	static uint16_t counter_movepandelay=0;
 	if (heatstep==4)//check pan status
 	 {
-			if (rsp.power<(cmd.lmt_power-500))
+			if (rsp.power<(cmd.lmt_power-200))
 					{
 						counter_movepandelay++;
 						if (counter_movepandelay>10000)
@@ -229,22 +228,15 @@ void heat_protect(void)
 					}
       else
          	counter_movepandelay=0;			
-		}
+			if (rsp.power==0)
+			{
+							counter_movepandelay=0;
+						  heat_stop_with_on_delay();
+						  ErrorReport(ERROR_NOPAN);
 				
-		/*static uint8_t counter_frequency;//mini frequency limitation		
-		if (counter_frequency<10)
-			  counter_frequency++;
-		if (counter_frequency==10)
-				{
-					counter_frequency=0;
-					rsp.frequency=counter_syntony;
-					counter_syntony=0;
-				}
-		if (rsp.frequency<205)
-		{
-			pwm_pulse=pwm_pulse-3;
-			pwm_pulse_set(pwm_pulse);
-		}*/
+			}
+		}
+
 		
     static uint8_t flag_sink_overhot=0;	//heatsink overhot protect
 		if (rsp.tempsink<cmd.lmt_tempsink)

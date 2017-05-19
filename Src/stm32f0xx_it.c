@@ -79,7 +79,7 @@ void SysTick_Handler(void)
 	{
 		timer=0;
 		rsp.clock++;
-		if (rsp.clock==0xffff)
+		if (rsp.clock == 0xffff)
 			  rsp.clock=0;
 	}
 	
@@ -118,10 +118,9 @@ void EXTI4_15_IRQHandler(void)
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-	//static uint8_t flag_highvoltage,counter_highvoltage;
 	if (GPIO_Pin==Surge_Pin)
 	{
-    heat_stop_with_on_delay();;
+    heat_stop_with_on_delay();
 		ErrorReport(ERROR_SURGE);
 	}
 
@@ -131,13 +130,8 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	{
 		ErrorReport(ERROR_OVERCURRENT);
 		flag_throttle=1;
-		//flag_highvoltage=1;
-		pwm_pulse=pwm_pulse-5;//-10, *5 stable paramters		  
+		pwm_pulse=pwm_pulse-3;//-10, *5 stable paramters		  
 		pwm_pulse_set(pwm_pulse);
-		/*ErrorReport(ERROR_OVERCURRENT);
-	  flag_highvoltage=1;
-		pwm_pulse=pwm_pulse-10-counter_highvoltage*5;//-10, *5 stable paramters		  
-		pwm_pulse_set(pwm_pulse);*/	
 	}	
 
   if (GPIO_Pin==Counter_Pin)
@@ -146,26 +140,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 		counter_syntony++;
 		if (counter_syntony>200)
 			  counter_syntony=200;
-		/*if (flag_highvoltage==1)
-				{
-					counter_highvoltage++;
-					flag_highvoltage=0;
-				}
-		else
-			 counter_highvoltage=0;
-		
-		if ((pwm_pulse<target_pwm_pulse)&&(heatstep==4)&&(counter_highvoltage==0))
-		  {			   
-				    pwm_pulse++;
-			      pwm_pulse_set(pwm_pulse);
-				 
-			}
-		
-		if ((pwm_pulse>target_pwm_pulse)&&(heatstep==4))
-		  {
-					 pwm_pulse--;
-					 pwm_pulse_set(pwm_pulse);
-			}*/
   }
 
 }

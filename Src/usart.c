@@ -154,12 +154,12 @@ void task5_ErrorHandle(void)
 void  Parameters_Init(void)
 {
 	cmd.lmt_current=1000;//max current                 10.00A
-	cmd.lmt_power=3000;//min continuously heat power  1000.0W
+	cmd.lmt_power=3000;//min continuously heat power  300.0W
 	cmd.lmt_pulse=1175;//1265=19k,1230=19.5k,1200=20k,max pwm pulse
 	cmd.lmt_rsplength=22;//max returning data length    2
-	cmd.lmt_tempsink=600;//max heatsink temperatue     750
-	cmd.lmt_voltage=2800;//max voltage                240.00V
-	cmd.loadtest=15;//reference load strength          10
+	cmd.lmt_tempsink=2370;//max heatsink temperatue   2800=70,2650=75,2530=80,2370=85,2160=90,2050=95,1740=100
+	cmd.lmt_voltage=2600;//max voltage                260.00V
+	cmd.loadtest=20;//reference load strength          20
 	pwm_pulse=0;//                                     0
 	uint8_t i;
 	for (i=0;i<MAX_CommBuffer;i++)

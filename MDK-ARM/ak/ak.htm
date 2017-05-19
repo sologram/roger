@@ -3,7 +3,7 @@
 <title>Static Call Graph - [ak\ak.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ak\ak.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060020: Last Updated: Fri May 19 16:53:40 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060020: Last Updated: Fri May 19 17:05:48 2017
 <BR><P>
 <H3>Maximum Stack Usage =        196 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -201,7 +201,6 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;power_handle
-<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;heat_protect
 <LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task0_AdSample
 </UL>
 
@@ -837,7 +836,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[8b]"></a>MX_GPIO_Init</STRONG> (Thumb, 146 bytes, Stack size 40 bytes, gpio.o(i.MX_GPIO_Init))
+<P><STRONG><a name="[8b]"></a>MX_GPIO_Init</STRONG> (Thumb, 144 bytes, Stack size 40 bytes, gpio.o(i.MX_GPIO_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = MX_GPIO_Init &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriority
@@ -893,7 +892,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[aa]"></a>Parameters_Init</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, usart.o(i.Parameters_Init))
+<P><STRONG><a name="[aa]"></a>Parameters_Init</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, usart.o(i.Parameters_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -1041,7 +1040,7 @@ Global Symbols
 
 <P><STRONG><a name="[bd]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
-<P><STRONG><a name="[9d]"></a>heat_adjust</STRONG> (Thumb, 114 bytes, Stack size 24 bytes, heater.o(i.heat_adjust))
+<P><STRONG><a name="[9d]"></a>heat_adjust</STRONG> (Thumb, 132 bytes, Stack size 24 bytes, heater.o(i.heat_adjust))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = heat_adjust &rArr; pwm_pulse_set
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_pulse_set
@@ -1062,18 +1061,17 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task1_PowerControl
 </UL>
 
-<P><STRONG><a name="[a4]"></a>heat_protect</STRONG> (Thumb, 198 bytes, Stack size 24 bytes, heater.o(i.heat_protect))
+<P><STRONG><a name="[a4]"></a>heat_protect</STRONG> (Thumb, 208 bytes, Stack size 24 bytes, heater.o(i.heat_protect))
 <BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = heat_protect &rArr; heat_stop_with_on_delay &rArr; set_fan_speed &rArr; HAL_TIM_PWM_Stop &rArr; TIM_CCxChannelCmd
 </UL>
-<BR>[Calls]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
-<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_pulse_set
+<BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_pulse_set
 <LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;heat_stop_with_on_delay
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ErrorReport
 </UL>
 <BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;task1_PowerControl
 </UL>
 
-<P><STRONG><a name="[a2]"></a>heat_start</STRONG> (Thumb, 84 bytes, Stack size 8 bytes, heater.o(i.heat_start))
+<P><STRONG><a name="[a2]"></a>heat_start</STRONG> (Thumb, 82 bytes, Stack size 8 bytes, heater.o(i.heat_start))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = heat_start &rArr; heat_stop_with_on_delay &rArr; set_fan_speed &rArr; HAL_TIM_PWM_Stop &rArr; TIM_CCxChannelCmd
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwm_pulse_set
